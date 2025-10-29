@@ -1,7 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 import PDFDocument from "pdfkit";
 import getStream from "get-stream";
-import axios from "axios";
+import axios from "axios/dist/node/axios.cjs";
+
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
