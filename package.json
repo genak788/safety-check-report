@@ -11,9 +11,9 @@
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.3",
-    "pdfkit": "^0.14.0",
-    "get-stream": "^6.0.1",
-    "axios": "^1.6.2"
+    "@supabase/supabase-js": "2.39.3",
+    "pdfkit": "0.14.0",
+    "get-stream": "6.0.1",
+    "axios": "1.7.7"
   }
 }
