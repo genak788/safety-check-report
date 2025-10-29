@@ -1,14 +1,14 @@
 {
   "name": "safety-check-report",
   "version": "1.0.0",
-  "description": "",
+  "description": "Safety check report form + PDF generator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Noval Zhahral",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "@supabase/supabase-js": "^2.39.3",
