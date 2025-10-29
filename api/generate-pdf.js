@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import PDFDocument from "pdfkit";
 import getStream from "get-stream";
 import axios from "axios/dist/node/axios.cjs";
+const safeAxios = axios?.default || axios;
 
 
 const supabase = createClient(
@@ -45,8 +46,8 @@ export default async function handler(req, res) {
       "https://raw.githubusercontent.com/genak788/safety-check-report/main/7c24cbb6-99ec-4c54-9151-2db44b7ff0cb.png";
 
     const [left, right] = await Promise.all([
-      axios.get(logoLeft, { responseType: "arraybuffer" }).then((r) => r.data),
-      axios.get(logoRight, { responseType: "arraybuffer" }).then((r) => r.data),
+      safeAxios.get(logoLeft, { responseType: "arraybuffer" }).then((r) => r.data),
+      safeAxios.get(logoRight, { responseType: "arraybuffer" }).then((r) => r.data),
     ]);
 
     doc.image(left, 50, 30, { width: 70 });
