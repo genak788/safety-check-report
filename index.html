@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Safety Check Report</title>
+<style>
+    body { font-family: Arial, sans-serif; background:#f7f7f7; padding:30px; }
+    .container { max-width:900px; margin:auto; background:white; padding:25px; border-radius:8px; }
+    label { display:block; margin-top:12px; font-weight:600; }
+    input, select, textarea { width:100%; padding:8px; margin-top:5px; border:1px solid #ccc; border-radius:4px; }
+    button { background:#007bff; border:none; padding:10px 18px; color:white; border-radius:4px; cursor:pointer; margin-top:18px; }
+    button:hover { background:#0056b3; }
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>📋 Safety Check Report Input Form</h2>
+
+<form id="reportForm" enctype="multipart/form-data">
+
+    <label>Nama Proyek</label>
+    <input type="text" name="project_name" required />
+
+    <label>Tanggal</label>
+    <input type="date" name="date" required />
+
+    <label>Checker 1</label>
+    <input type="text" name="checker1" required />
+
+    <label>Checker 2</label>
+    <input type="text" name="checker2" />
+
+    <label>Checker 3</label>
+    <input type="text" name="checker3" />
+
+    <label>Upload Excel (Format SparePart + Pekerjaan + FotoMapping)</label>
+    <input type="file" name="excel" accept=".xlsx" required />
+
+    <label>Upload Semua Foto Temuan (banyak sekaligus)</label>
+    <input type="file" name="photos" accept="image/*" multiple required />
+
+    <button type="submit">Upload & Simpan</button>
+</form>
+
+<script>
+document.getElementById("reportForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData
+    });
+
+    const result = await res.json();
+    if(result.status === "ok"){
+        alert("✅ Data berhasil disimpan. Klik OK untuk generate PDF.");
+        window.location.href = `/api/generate-pdf?id=${result.id}`;
+    } else {
+        alert("❌ Error: " + result.message);
+    }
+});
+</script>
+
+</div>
+</body>
+</html>
